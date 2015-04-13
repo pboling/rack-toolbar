@@ -35,8 +35,17 @@ EOS
 
     # Subclasses may override this method if they have alternate means of deciding which requests to modify.
     def okay_to_modify?
-      return false unless @headers["Content-Type"] =~ self.class::CONTENT_TYPE_REGEX
+      return false if is_xhr?
+      return false unless modifiable_content_type?
       true
+    end
+
+    def modifiable_content_type?
+      @headers["Content-Type"] =~ self.class::CONTENT_TYPE_REGEX
+    end
+
+    def is_xhr?
+      @headers["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
     end
 
     def each(&block)
