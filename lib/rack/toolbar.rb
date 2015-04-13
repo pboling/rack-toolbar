@@ -41,10 +41,8 @@ EOS
 
     def each(&block)
       if okay_to_modify?
-        body = @response.inject("") do |memo, part|
-          memo << part
-          memo
-        end
+        body = ""
+        @response.each {|part| body << part }
         index = body.rindex(@options[:insertion_point])
         if index
           if @options[:insertion_method] != :before
