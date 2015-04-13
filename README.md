@@ -1,6 +1,6 @@
 # Rack::Toolbar
 
-Allows you to create simple Rack Middleware that will insert HTML into responses at specific points.
+Allows you to create simple Rack Middleware that will insert HTML (or whatever!) into responses at specific points.
 
 This gem was extracted from [Rack::Insight](https://github.com/pboling/rack-insight).
 
