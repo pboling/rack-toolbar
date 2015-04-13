@@ -17,6 +17,17 @@ describe Rack::Toolbar do
       expect(response.body).to eq "<html><head></head><body><h1>Important</h1>  <h1>Welcome to rack-toolbar</h1>\n  <ul>\n    <li>Define render in Middleware subclass of Rack::Toolbar to return an HTML snippet.</li>\n    <li>or</li>\n    <li>Pass an HTML snippet as an argument and use Rack::Toolbar directly: Rack::Toolbar.new(snippet).</li>\n    <li>or</li>\n    <li>Redefine Rack::Toolbar::SNIPPET and ignore with the warnings.</li>\n  </ul>\n</body></html>"
     end
 
+    def ajax_app(*args)
+      Rack::Builder.new do
+        use Rack::Toolbar, *args
+        run lambda { |env| [200, {"Content-Type" => "text/html", "HTTP_X_REQUESTED_WITH" => "XMLHttpRequest"}, ["<html><head></head><body><h1>Important</h1></body></html>"]] }
+      end
+    end
+
+    it "does not modify Ajax request" do
+      response = Rack::MockRequest.new(ajax_app).post("/")
+      expect(response.body).to eq %[<html><head></head><body><h1>Important</h1></body></html>]
+    end
     context "via use" do
       it "Allows customization of snippet" do
         response = Rack::MockRequest.new(app({:snippet => "<p>Custom</p>"})).get("/")
