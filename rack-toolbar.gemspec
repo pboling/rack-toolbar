@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Peter Boling"]
   spec.email         = ["peter.boling@gmail.com"]
 
-  spec.summary       = %q{Provides an easy way to create Rack Middleware Toolbars}
-  spec.description   = %q{Extracted from rack-insight. Provides an easy way to create Rack Middleware Toolbars}
+  spec.summary       = %q{Provides an easy way to create Rack Middleware that injects things into the response body}
+  spec.description   = %q{Provides an easy way to create Rack Middleware that injects things into the response body. Extracted from rack-insight.}
   spec.homepage      = "https://github.com/pboling/rack-toolbar"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
