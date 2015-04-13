@@ -28,7 +28,8 @@ EOS
     end
 
     def call(env)
-      @status, @headers, @response = @app.call(env)
+      @env = env
+      @status, @headers, @response = @app.call(@env)
       [@status, @headers, self]
     end
 
