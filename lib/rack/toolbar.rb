@@ -33,6 +33,7 @@ EOS
       [@status, @headers, self]
     end
 
+    # Subclasses may override this method if they have alternate means of deciding which requests to modify.
     def okay_to_modify?
       return false unless @headers["Content-Type"] =~ self.class::CONTENT_TYPE_REGEX
       true
