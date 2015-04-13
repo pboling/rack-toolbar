@@ -4,6 +4,9 @@ Allows you to create simple Rack Middleware that will insert HTML (or whatever!)
 
 This gem was extracted from [Rack::Insight](https://github.com/pboling/rack-insight).
 
+*NOTE*: As it goes with all middleware that modifies the response, not compatible with Rails' streaming responses 
+because it modifies the response.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -83,3 +86,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributors
 
 See the [Network View](https://github.com/pboling/rack-toolbar/network)
+
+## Alternatives
+
+Other projects which will allow you to build Middleware to inject stuff into responses:
+
+* [rack-plastic](https://github.com/techiferous/rack-plastic)
